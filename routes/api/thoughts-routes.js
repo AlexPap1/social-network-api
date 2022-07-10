@@ -4,7 +4,7 @@ const {
   removeComment,
   addReply,
   removeReply
-} = require('../../controllers/comment-controller');
+} = require('../../controllers/thoughts-controller');
 
 // /api/comments/<pizzaId>
 router.route('/:pizzaId').post(addComment);
