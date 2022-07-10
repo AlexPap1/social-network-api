@@ -40,7 +40,7 @@ const thoughtsController = {
   },
 
   //put thoughts
-  updateThoughts({ params, bosy }, res) {
+  updateThoughts({ params, body }, res) {
     Thoughts.findOneAndUpdate({ _id: params.id}, body, { new: true, runValidators: true })
       .then(dbThoughtsData => {
         if(!dbThoughtsData) {
@@ -55,10 +55,16 @@ const thoughtsController = {
   //REACTIONS
   
   //delete thought
-  deleteThoughts({ params }, res) {
-    Thoughts.findOneAndDelete({ _id: params.thoughtsId })
-      .then(dbThoughtsData => res,json(dbThoughtsData))
-      .catch(err => res.json(err));
+  deleteThoughts({params}, res) {
+    Thoughts.findOneAndDelete({_id: params.id})
+      .then(dbThoughtsData => {
+        if(!dbThoughtsData) {
+          res.status(404).json({message: 'No thought with this id' });
+          return;
+        }
+        res.json(dbThoughtsData);
+      })
+      .catch(err => res.status(400).json(err));
   },
 
   //post reaction
@@ -79,7 +85,7 @@ const thoughtsController = {
   },
 
   //delete reaction 
-  deleteRaction({ params }, res) {
+  deleteReaction({ params }, res) {
     Thoughts.findOneAndUpdate(
       { _id: params.id },
       { $pull: { reactionId: params.reactionId} },
