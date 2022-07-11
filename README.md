@@ -23,6 +23,10 @@
 
 This repository is a backend tool for a social media platform. This platform offers creation of users and posts. Within the users is the interactivity of adding friends, and within the posts (thoughts), contains the interactivity of reactions (comments). This back end features 14 functions including GET, POST, PUT, and DELETE.
 <br />
+AS A social media startup
+I WANT an API for my social network that uses a NoSQL database
+SO THAT my website can handle large amounts of unstructured data
+<br />
 
 ## 📜 Table of Contents 📜
 <br />
